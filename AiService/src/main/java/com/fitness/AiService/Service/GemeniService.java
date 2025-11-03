@@ -14,7 +14,7 @@ public class GemeniService {
 
          public final WebClient webClient;
          private String geminiApiUrl="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
-         private String geminiApiKey="AIzaSyARGCR4dVzxvBnRKDWOTobwJGLyVNpt1nw";
+         private String geminiApiKey="xxxxxxxxxxxxxxxxxxxxxxxxxxCreate your own api key";
 
          public GemeniService (WebClient.Builder webClientBuilder){
              this.webClient= WebClient.builder().build();

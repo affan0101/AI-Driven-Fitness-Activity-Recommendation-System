@@ -1,0 +1,37 @@
+server:
+  port: 9096
+
+# Eureka Client Configuration
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9095/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+    instance-id: "${spring.application.name}:${server.port}"
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9099/realms/FitnessApp/protocol/openid-connect/certs
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: UserService
+              uri: lb://USERSERVICE
+              predicates:
+                - Path=/api/users/**
+            - id: Activity
+              uri: lb://ACTIVITY
+              predicates:
+                - Path=/api/activities/**
+            - id: AiService
+              uri: lb://AISERVICE
+              predicates:
+                - Path=/api/recomendation/**
